@@ -8,6 +8,7 @@ public class MailManager : MonoBehaviour
     [SerializeField] MailBox[] _mailBoxes;
     [SerializeField] MailInfo[] _mailTypes;
     [SerializeField] GameObject _mailPrefab;
+    [SerializeField] Vector2Int _minMaxDelay;
 
     private List<MailBox> emptyBoxes = new List<MailBox>();
 
@@ -25,17 +26,17 @@ public class MailManager : MonoBehaviour
 
     private async void FillMailBox(MailBox mailBox, Mail mail)
     {
-        if(mailBox == null || !gameObject)
+        if(mailBox == null || GameManager.Instance.PlayerDied)
         {
-            //Kill player
+            GameManager.Instance.GameOver();
 
             return;
         }
 
         mailBox.FillBox(mail);
-        mailBox.GetComponent<MeshRenderer>().material.color = Color.red;
+        //mailBox.GetComponent<MeshRenderer>().material.color = Color.red;
 
-        await Task.Delay(Random.Range(4, 5));
+        await Task.Delay(Random.Range(_minMaxDelay.x, _minMaxDelay.y));
 
         FillMailBox(GetRandomEmptyMailBox(), GetRandomMail());
     }

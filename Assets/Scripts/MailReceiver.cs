@@ -30,5 +30,6 @@ public class MailReceiver : MonoBehaviour
         Destroy(mail.gameObject);
 
         //IncreasePoint
+        ScoreManager.Instance.IncreaseScore(1);
     }
 }

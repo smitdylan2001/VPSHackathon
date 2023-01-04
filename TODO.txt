@@ -1,0 +1,4 @@
+- mail catchers gfx
+- sound
+- Mailbox open animation
+- Increasing difficulty

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] LayerMask _mask;
-    [SerializeField] float _mailMoveSpeed = 1;
+    [SerializeField] float _mailMoveSpeed = 1, _mailDistance = 0.7f;
+    [SerializeField] Vector3 _mailOffset;
 
     private Mail _heldMail;
     private Rigidbody _mailRb;
@@ -97,7 +98,7 @@ public class Player : MonoBehaviour
 
     void MoveMail()
     {
-        _mailRb.MovePosition(Vector3.SmoothDamp(_mailRb.position,(transform.position + transform.forward), ref _mailVelocity, _mailMoveSpeed));
+        _mailRb.MovePosition(Vector3.SmoothDamp(_mailRb.position, ((transform.forward * _mailDistance) + transform.position) + _mailOffset, ref _mailVelocity, _mailMoveSpeed));
         _heldMail.transform.LookAt(gameObject.transform);
     }
 }

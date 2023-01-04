@@ -6,10 +6,17 @@ public class MailBox : MonoBehaviour
 {
     public bool IsFull { get; private set; }
 
-    [SerializeField] private float _timeLimit = 7;
+    [SerializeField] private float _timeLimit = 20;
 
     private Mail _mail;
     private float _timer;
+    private GameObject _notification;
+
+    private void Start()
+    {
+        _notification = transform.GetChild(0).gameObject;
+        _notification.SetActive(false);
+    }
 
     private void Update()
     {
@@ -19,7 +26,7 @@ public class MailBox : MonoBehaviour
 
         if(_timer > _timeLimit)
         {
-            //Kill player
+            GameManager.Instance.GameOver();
         }
     }
 
@@ -27,16 +34,16 @@ public class MailBox : MonoBehaviour
     {
         _mail = mail;
         IsFull = true;
+        _notification.SetActive(true);
     }
 
     public Mail EmptyBox()
     {
-        Debug.Log(_mail);
         Mail mailReference = _mail;
         _mail = null;
-        Debug.Log(mailReference);
         IsFull = false;
         _timer = 0;
+        _notification.SetActive(false);
         return mailReference;
     }
 }
