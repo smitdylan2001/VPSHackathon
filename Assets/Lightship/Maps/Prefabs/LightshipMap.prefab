@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3827465470830703312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3827465470830417132}
+  - component: {fileID: 3827465470819405818}
+  m_Layer: 0
+  m_Name: LightshipMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3827465470830417132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827465470830703312}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3827465470819405818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827465470830703312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0065c20f13fc326408fe756c97b2d701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _builders:
+  - {fileID: 11400000, guid: 862f954d60b1cda4283fa0f7355bd0a8, type: 2}
+  - {fileID: 11400000, guid: c9f3b0e1115d51e449ac4d5e749df6a7, type: 2}
+  - {fileID: 11400000, guid: 101a93ec3b0f7e34d9dc8d4d96cd85b7, type: 2}
+  - {fileID: 11400000, guid: 157bbaab4f695a440b4d0cf5e85e95ac, type: 2}
+  - {fileID: 11400000, guid: 09a943a179413f6429977ba8bd42ee5f, type: 2}
+  - {fileID: 11400000, guid: 1d6a8ab5861b3a244b15faed70644dc8, type: 2}
+  - {fileID: 11400000, guid: 5cddb617e6088d546a6757a10f865f9b, type: 2}
+  - {fileID: 11400000, guid: 445baec18065a8140b4e7aea62c2706d, type: 2}
+  - {fileID: 11400000, guid: e1e1120e167b6ae4bb99f67c1978dbda, type: 2}
+  _mapTilePrefab: {fileID: 5117367085782940760, guid: 5be2fed190cb51e4cb8096b496cef681,
+    type: 3}
+  _defaultLocation:
+    _latitude: 47.61989212036133
+    _longitude: -122.35340881347656
+    _mapRadius: 500
