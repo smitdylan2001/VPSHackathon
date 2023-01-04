@@ -10,35 +10,41 @@ public class MailManager : MonoBehaviour
     [SerializeField] GameObject _mailPrefab;
     [SerializeField] Vector2Int _minMaxDelay;
 
+    private AudioSource _audioSource;
     private List<MailBox> emptyBoxes = new List<MailBox>();
 
-    private async void Start()
+    private IEnumerator Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         if (_mailBoxes.Length == 0)
         {
             _mailBoxes = GetComponentsInChildren<MailBox>();
         }
 
-        await Task.Delay(Random.Range(200, 400));
+        yield return new WaitForSeconds(Random.Range(0.5f, 1.3f));
 
-        FillMailBox(GetRandomMailBox(), GetRandomMail());
+        StartCoroutine(FillMailBox(GetRandomMailBox(), GetRandomMail()));
     }
 
-    private async void FillMailBox(MailBox mailBox, Mail mail)
+    private IEnumerator FillMailBox(MailBox mailBox, Mail mail)
     {
-        if(mailBox == null || GameManager.Instance.PlayerDied)
+        while (true)
         {
-            GameManager.Instance.GameOver();
+            if (mailBox == null || GameManager.Instance.PlayerDied)
+            {
+                GameManager.Instance.GameOver();
 
-            return;
+                yield break;
+            }
+
+            mailBox.FillBox(mail);
+            _audioSource.Play();
+
+            mailBox = GetRandomEmptyMailBox();
+            mail = GetRandomMail();
+            yield return new WaitForSeconds(Random.Range(_minMaxDelay.x, _minMaxDelay.y));
         }
-
-        mailBox.FillBox(mail);
-        //mailBox.GetComponent<MeshRenderer>().material.color = Color.red;
-
-        await Task.Delay(Random.Range(_minMaxDelay.x, _minMaxDelay.y));
-
-        FillMailBox(GetRandomEmptyMailBox(), GetRandomMail());
     }
 
     private MailBox GetRandomMailBox()

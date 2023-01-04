@@ -62,14 +62,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Debug.DrawRay(ray.origin, ray.direction);
-        Debug.Log(hitInfo);
         var mailBox = hitInfo.collider.GetComponent<MailBox>();
         if (!mailBox)
         {
             return;
         }
-        Debug.Log(mailBox);
 
         if (!mailBox.IsFull)
         {
