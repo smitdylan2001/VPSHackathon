@@ -8,7 +8,7 @@ public class MailManager : MonoBehaviour
     [SerializeField] MailBox[] _mailBoxes;
     [SerializeField] MailInfo[] _mailTypes;
     [SerializeField] GameObject _mailPrefab;
-    [SerializeField] Vector2Int _minMaxDelay;
+    [SerializeField] Vector2 _minMaxDelay;
 
     private AudioSource _audioSource;
     private List<MailBox> emptyBoxes = new List<MailBox>();
@@ -43,6 +43,7 @@ public class MailManager : MonoBehaviour
 
             mailBox = GetRandomEmptyMailBox();
             mail = GetRandomMail();
+            _minMaxDelay *= Random.Range(0.95f, 1.02f);
             yield return new WaitForSeconds(Random.Range(_minMaxDelay.x, _minMaxDelay.y));
         }
     }

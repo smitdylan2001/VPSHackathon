@@ -7,11 +7,16 @@ public class MailReceiver : MonoBehaviour
     [SerializeField] private MailInfo _requiredMailInfo;
     [SerializeField] private GameObject _mouth;
     [SerializeField] private float _animationTime = 0.25f;
+    [SerializeField] private AudioClip[] _eatSounds;
+
+    AudioSource _audioSource;
     float timer;
+
     private void Start()
     {
         _mouth.GetComponent<MeshRenderer>().material.color = _requiredMailInfo.Color;
         StartCoroutine(EatMailAnimation());
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -32,7 +37,7 @@ public class MailReceiver : MonoBehaviour
 
         Destroy(mail.gameObject);
         StartCoroutine(EatMailAnimation());
-
+        StartCoroutine(EatingSounds());
         //IncreasePoint
         ScoreManager.Instance.IncreaseScore(1);
     }
@@ -73,5 +78,28 @@ public class MailReceiver : MonoBehaviour
             timer += Time.deltaTime / _animationTime;
             yield return null;
         }
+    }
+
+    IEnumerator EatingSounds()
+    {
+        var clip = GetRandomAudioClip();
+        PlayAudio(_audioSource, clip);
+
+        yield return new WaitUntil(() => !_audioSource.isPlaying);
+
+        clip = GetRandomAudioClip();
+        PlayAudio(_audioSource, clip);
+    }
+
+    void PlayAudio(AudioSource source, AudioClip clip)
+    {
+        source.Stop();
+        source.clip = clip;
+        source.Play();
+    }
+
+    AudioClip GetRandomAudioClip()
+    {
+        return _eatSounds[Random.Range(0, _eatSounds.Length)];
     }
 }

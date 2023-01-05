@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeLimit: 30
+  _animationRotateAmount: 80
+  _animationTime: 0.25
 --- !u!33 &1636915276718665693
 MeshFilter:
   m_ObjectHideFlags: 0
